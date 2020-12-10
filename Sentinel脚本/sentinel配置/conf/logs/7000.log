@@ -1,0 +1,64 @@
+======================初始化开始==================
+17272:C 26 Jul 17:20:50.489 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+17272:C 26 Jul 17:20:50.489 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=17272, just started
+17272:C 26 Jul 17:20:50.489 # Configuration loaded
+17273:M 26 Jul 17:20:50.493 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+17273:M 26 Jul 17:20:50.495 * Running mode=standalone, port=7000.
+17273:M 26 Jul 17:20:50.495 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+17273:M 26 Jul 17:20:50.495 # Server initialized
+17273:M 26 Jul 17:20:50.495 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+17273:M 26 Jul 17:20:50.495 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+17273:M 26 Jul 17:20:50.506 * DB loaded from disk: 0.011 seconds
+17273:M 26 Jul 17:20:50.506 * Ready to accept connections
+==========================初始化结束==========================================
+#1. Slave7001请求同步
+17273:M 26 Jul 17:20:53.113 * Slave 192.168.132.128:7001 asks for synchronization
+17273:M 26 Jul 17:20:53.113 * Partial resynchronization not accepted: Replication ID mismatch (Slave asked for '91dd4689d93f88e6eb1ad517001515017abd6ee7', my replication IDs are 'dbd3a8ce6c6193a3cd78851d505dcb93e91f9352' and '0000000000000000000000000000000000000000')
+17273:M 26 Jul 17:20:53.113 * Starting BGSAVE for SYNC with target: disk
+17273:M 26 Jul 17:20:53.113 * Background saving started by pid 17290
+#2. RBB方式备份
+17290:C 26 Jul 17:20:53.119 * DB saved on disk
+17290:C 26 Jul 17:20:53.120 * RDB: 0 MB of memory used by copy-on-write
+17273:M 26 Jul 17:20:53.151 * Background saving terminated with success
+#3. Slave7001数据同步成功
+17273:M 26 Jul 17:20:53.151 * Synchronization with slave 192.168.132.128:7001 succeeded
+#4. Slave7002请求同步
+17273:M 26 Jul 17:20:55.247 * Slave 192.168.132.128:7002 asks for synchronization
+#5. Slave7002数据同步称重
+17273:M 26 Jul 17:20:55.247 * Partial resynchronization request from 192.168.132.128:7002 accepted. Sending 0 bytes of backlog starting from offset 1.
+17273:M 26 Jul 17:21:42.770 # User requested shutdown...
+17273:M 26 Jul 17:21:42.770 * Removing the pid file.
+#6. Redis7000 Kill -9 强制下线
+17273:M 26 Jul 17:21:42.770 # Redis is now ready to exit, bye bye...
+#7. 7000 重新上线
+17385:C 26 Jul 17:29:29.661 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+17385:C 26 Jul 17:29:29.662 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=17385, just started
+17385:C 26 Jul 17:29:29.662 # Configuration loaded
+17386:M 26 Jul 17:29:29.665 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+17386:M 26 Jul 17:29:29.667 * Running mode=standalone, port=7000.
+17386:M 26 Jul 17:29:29.667 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+17386:M 26 Jul 17:29:29.667 # Server initialized
+17386:M 26 Jul 17:29:29.667 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+17386:M 26 Jul 17:29:29.668 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+17386:M 26 Jul 17:29:29.681 * DB loaded from disk: 0.013 seconds
+17386:M 26 Jul 17:29:29.681 * Ready to accept connections
+#8. 7000启动后正式变更为Master
+17386:S 26 Jul 17:29:40.124 * Before turning into a slave, using my master parameters to synthesize a cached master: I may be able to synchronize with the new master with just a partial transfer.
+#9. SLAVE 7000 向Master 7001 发送请求
+17386:S 26 Jul 17:29:40.124 * SLAVE OF 192.168.132.128:7001 enabled (user request from 'id=3 addr=192.168.132.128:49593 fd=7 name=sentinel-4838fb10-cmd age=10 idle=0 flags=x db=0 sub=0 psub=0 multi=3 qbuf=0 qbuf-free=32768 obl=36 oll=0 omem=0 events=r cmd=exec')
+#10 Rewrite已生效
+17386:S 26 Jul 17:29:40.124 # CONFIG REWRITE executed with success.
+#11. 连接至Master7001
+17386:S 26 Jul 17:29:40.315 * Connecting to MASTER 192.168.132.128:7001
+#12. 启动主从同步
+17386:S 26 Jul 17:29:40.315 * MASTER <-> SLAVE sync started
+17386:S 26 Jul 17:29:40.315 * Non blocking connect for SYNC fired the event.
+17386:S 26 Jul 17:29:40.315 * Master replied to PING, replication can continue...
+17386:S 26 Jul 17:29:40.315 * Trying a partial resynchronization (request 5628de5431f385e8e904aa6599ba4bbfca1e2a7f:1).
+17386:S 26 Jul 17:29:40.316 * Full resync from master: 348849a2cf9f20d4d23a3855fc1fd163a991c320:821651
+17386:S 26 Jul 17:29:40.316 * Discarding previously cached master state.
+17386:S 26 Jul 17:29:40.390 * MASTER <-> SLAVE sync: receiving 616768 bytes from master
+17386:S 26 Jul 17:29:40.391 * MASTER <-> SLAVE sync: Flushing old data
+17386:S 26 Jul 17:29:40.394 * MASTER <-> SLAVE sync: Loading DB in memory
+#13. 主从同步完成
+17386:S 26 Jul 17:29:40.417 * MASTER <-> SLAVE sync: Finished with success

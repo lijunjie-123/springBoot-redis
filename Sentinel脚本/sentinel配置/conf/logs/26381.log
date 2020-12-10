@@ -1,0 +1,27 @@
+16740:X 26 Jul 17:20:31.486 # User requested shutdown...
+16740:X 26 Jul 17:20:31.486 * Removing the pid file.
+16740:X 26 Jul 17:20:31.486 # Sentinel is now ready to exit, bye bye...
+17306:X 26 Jul 17:21:13.295 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+17306:X 26 Jul 17:21:13.296 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=17306, just started
+17306:X 26 Jul 17:21:13.296 # Configuration loaded
+17307:X 26 Jul 17:21:13.298 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+17307:X 26 Jul 17:21:13.299 * Running mode=sentinel, port=26381.
+17307:X 26 Jul 17:21:13.300 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+17307:X 26 Jul 17:21:13.300 # Sentinel ID is 4838fb100f4e912e16e70d0202f45442d8e4e7d4
+17307:X 26 Jul 17:21:13.300 # +monitor master mymaster 192.168.132.128 7000 quorum 2
+17307:X 26 Jul 17:21:13.301 * +slave slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17307:X 26 Jul 17:21:13.302 * +slave slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7000
+17307:X 26 Jul 17:21:13.374 * +sentinel sentinel fa2a876bd3368d01a632ba54ec8a6e9998de3556 192.168.132.128 26380 @ mymaster 192.168.132.128 7000
+17307:X 26 Jul 17:21:13.993 * +sentinel sentinel 2f4b0fdd3e4b705f6111a9a5ace1cbc72b3d4a3f 192.168.132.128 26379 @ mymaster 192.168.132.128 7000
+17307:X 26 Jul 17:22:12.856 # +sdown master mymaster 192.168.132.128 7000
+17307:X 26 Jul 17:22:12.909 # +new-epoch 1
+17307:X 26 Jul 17:22:12.910 # +vote-for-leader fa2a876bd3368d01a632ba54ec8a6e9998de3556 1
+17307:X 26 Jul 17:22:12.949 # +odown master mymaster 192.168.132.128 7000 #quorum 3/2
+17307:X 26 Jul 17:22:12.949 # Next failover delay: I will not start a failover before Thu Jul 26 17:22:43 2018
+17307:X 26 Jul 17:22:13.412 # +config-update-from sentinel fa2a876bd3368d01a632ba54ec8a6e9998de3556 192.168.132.128 26380 @ mymaster 192.168.132.128 7000
+17307:X 26 Jul 17:22:13.412 # +switch-master mymaster 192.168.132.128 7000 192.168.132.128 7001
+17307:X 26 Jul 17:22:13.412 * +slave slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7001
+17307:X 26 Jul 17:22:13.412 * +slave slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
+17307:X 26 Jul 17:22:43.500 # +sdown slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
+17307:X 26 Jul 17:29:30.138 # -sdown slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
+17307:X 26 Jul 17:29:40.124 * +convert-to-slave slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001

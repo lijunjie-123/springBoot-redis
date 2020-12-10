@@ -1,0 +1,29 @@
+16735:X 26 Jul 17:20:25.991 # User requested shutdown...
+16735:X 26 Jul 17:20:25.991 * Removing the pid file.
+16735:X 26 Jul 17:20:25.991 # Sentinel is now ready to exit, bye bye...
+17296:X 26 Jul 17:21:07.896 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+17296:X 26 Jul 17:21:07.896 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=17296, just started
+17296:X 26 Jul 17:21:07.896 # Configuration loaded
+17297:X 26 Jul 17:21:07.898 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+17297:X 26 Jul 17:21:07.900 * Running mode=sentinel, port=26379.
+17297:X 26 Jul 17:21:07.900 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+17297:X 26 Jul 17:21:07.901 # Sentinel ID is 2f4b0fdd3e4b705f6111a9a5ace1cbc72b3d4a3f
+#1. 确认启动成功，3个Sentinel指向7000 Master
+17297:X 26 Jul 17:21:07.901 # +monitor master mymaster 192.168.132.128 7000 quorum 2
+#2. Rewrite 配置文件 ，将两个SLAVE 7001/7002 和其他两个Sentinel节点 26380/26381 写到sentinel-26389.conf中
+17297:X 26 Jul 17:21:07.902 * +slave slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17297:X 26 Jul 17:21:07.902 * +slave slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7000
+17297:X 26 Jul 17:21:13.284 * +sentinel sentinel fa2a876bd3368d01a632ba54ec8a6e9998de3556 192.168.132.128 26380 @ mymaster 192.168.132.128 7000
+17297:X 26 Jul 17:21:15.343 * +sentinel sentinel 4838fb100f4e912e16e70d0202f45442d8e4e7d4 192.168.132.128 26381 @ mymaster 192.168.132.128 7000
+#3.“客观”发现7000Master服务已下线
+17297:X 26 Jul 17:22:12.817 # +sdown master mymaster 192.168.132.128 7000
+17297:X 26 Jul 17:22:12.908 # +new-epoch 1
+#4. 发起投票，26379成为本次故障迁移的“领导者”
+17297:X 26 Jul 17:22:12.909 # +vote-for-leader fa2a876bd3368d01a632ba54ec8a6e9998de3556 1
+17297:X 26 Jul 17:22:13.411 # +config-update-from sentinel fa2a876bd3368d01a632ba54ec8a6e9998de3556 192.168.132.128 26380 @ mymaster 192.168.132.128 7000
+#5. 将7001提成为Master， 
+17297:X 26 Jul 17:22:13.411 # +switch-master mymaster 192.168.132.128 7000 192.168.132.128 7001
+#6. 7000、7002标记为SLAVE
+17297:X 26 Jul 17:22:13.411 * +slave slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7001
+17297:X 26 Jul 17:22:13.411 * +slave slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
+

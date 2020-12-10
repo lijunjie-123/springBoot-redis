@@ -1,0 +1,143 @@
+16718:M 26 Jul 17:20:18.054 # User requested shutdown...
+16718:M 26 Jul 17:20:18.055 * Removing the pid file.
+16718:M 26 Jul 17:20:18.055 # Redis is now ready to exit, bye bye...
+17285:C 26 Jul 17:20:53.096 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+17285:C 26 Jul 17:20:53.096 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=17285, just started
+17285:C 26 Jul 17:20:53.096 # Configuration loaded
+17286:S 26 Jul 17:20:53.099 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+17286:S 26 Jul 17:20:53.100 * Running mode=standalone, port=7001.
+17286:S 26 Jul 17:20:53.101 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+17286:S 26 Jul 17:20:53.101 # Server initialized
+17286:S 26 Jul 17:20:53.101 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+17286:S 26 Jul 17:20:53.101 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+17286:S 26 Jul 17:20:53.112 * DB loaded from disk: 0.011 seconds
+17286:S 26 Jul 17:20:53.112 * Before turning into a slave, using my master parameters to synthesize a cached master: I may be able to synchronize with the new master with just a partial transfer.
+#1. 7001 自动成功
+17286:S 26 Jul 17:20:53.112 * Ready to accept connections
+#2. 连接至Master7000
+17286:S 26 Jul 17:20:53.112 * Connecting to MASTER 192.168.132.128:7000
+#3.  开始主从同步
+17286:S 26 Jul 17:20:53.112 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:20:53.112 * Non blocking connect for SYNC fired the event.
+17286:S 26 Jul 17:20:53.112 * Master replied to PING, replication can continue...
+17286:S 26 Jul 17:20:53.113 * Trying a partial resynchronization (request 91dd4689d93f88e6eb1ad517001515017abd6ee7:1).
+17286:S 26 Jul 17:20:53.113 * Full resync from master: 10a1653621b22129266f7306f7504e102e133f21:0
+17286:S 26 Jul 17:20:53.113 * Discarding previously cached master state.
+17286:S 26 Jul 17:20:53.151 * MASTER <-> SLAVE sync: receiving 293156 bytes from master
+17286:S 26 Jul 17:20:53.152 * MASTER <-> SLAVE sync: Flushing old data
+17286:S 26 Jul 17:20:53.154 * MASTER <-> SLAVE sync: Loading DB in memory
+#4. 主从同步成功
+17286:S 26 Jul 17:20:53.162 * MASTER <-> SLAVE sync: Finished with success
+#5. 发现Master7000连接丢失
+17286:S 26 Jul 17:21:42.778 # Connection with master lost.
+17286:S 26 Jul 17:21:42.778 * Caching the disconnected master state.
+#6. 不断尝试连接Master7000
+17286:S 26 Jul 17:21:42.885 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:42.886 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:42.886 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:43.906 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:43.906 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:43.906 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:44.913 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:44.913 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:44.913 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:45.922 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:45.922 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:45.922 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:46.931 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:46.931 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:46.931 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:47.942 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:47.942 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:47.942 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:48.954 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:48.955 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:48.955 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:49.964 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:49.964 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:49.964 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:50.974 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:50.974 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:50.974 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:51.984 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:51.984 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:51.984 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:52.993 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:52.993 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:52.993 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:54.002 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:54.002 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:54.002 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:55.018 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:55.018 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:55.018 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:56.031 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:56.031 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:56.031 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:57.042 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:57.042 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:57.042 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:58.053 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:58.054 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:58.054 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:21:59.066 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:21:59.066 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:21:59.066 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:00.074 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:00.074 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:00.074 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:01.089 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:01.089 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:01.089 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:02.100 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:02.100 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:02.100 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:03.114 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:03.115 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:03.115 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:04.131 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:04.131 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:04.131 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:05.143 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:05.143 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:05.143 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:06.220 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:06.220 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:06.220 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:07.314 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:07.314 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:07.314 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:08.407 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:08.408 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:08.408 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:09.495 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:09.496 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:09.496 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:10.594 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:10.594 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:10.594 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:11.687 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:11.687 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:11.687 # Error condition on socket for SYNC: Connection refused
+17286:S 26 Jul 17:22:12.742 * Connecting to MASTER 192.168.132.128:7000
+17286:S 26 Jul 17:22:12.742 * MASTER <-> SLAVE sync started
+17286:S 26 Jul 17:22:12.742 # Error condition on socket for SYNC: Connection refused
+17286:M 26 Jul 17:22:13.110 # Setting secondary replication ID to 10a1653621b22129266f7306f7504e102e133f21, valid up to offset: 73651. New replication ID is 348849a2cf9f20d4d23a3855fc1fd163a991c320
+17286:M 26 Jul 17:22:13.110 * Discarding previously cached master state.
+#7. 20秒后，Sentinel正式确认Master已下线，7001来自Sentinel的通知，从SLAVE提升到Master
+17286:M 26 Jul 17:22:13.110 * MASTER MODE enabled (user request from 'id=7 addr=192.168.132.128:52110 fd=10 name=sentinel-fa2a876b-cmd age=62 idle=0 flags=x db=0 sub=0 psub=0 multi=3 qbuf=0 qbuf-free=32768 obl=36 oll=0 omem=0 events=r cmd=exec')
+#8. 配置重写，info->Role:Master
+17286:M 26 Jul 17:22:13.110 # CONFIG REWRITE executed with success.
+#9. SLAVE 7002 请求与Master7001重新进行同步
+17286:M 26 Jul 17:22:13.876 * Slave 192.168.132.128:7002 asks for synchronization
+17286:M 26 Jul 17:22:13.876 * Partial resynchronization request from 192.168.132.128:7002 accepted. Sending 313 bytes of backlog starting from offset 73651.
+#10 SLAVE 7000 重新上线，请求与Master7001 进行同步
+17286:M 26 Jul 17:29:40.315 * Slave 192.168.132.128:7000 asks for synchronization
+17286:M 26 Jul 17:29:40.315 * Partial resynchronization not accepted: Replication ID mismatch (Slave asked for '5628de5431f385e8e904aa6599ba4bbfca1e2a7f', my replication IDs are '348849a2cf9f20d4d23a3855fc1fd163a991c320' and '10a1653621b22129266f7306f7504e102e133f21')
+17286:M 26 Jul 17:29:40.315 * Starting BGSAVE for SYNC with target: disk
+17286:M 26 Jul 17:29:40.316 * Background saving started by pid 17391
+17391:C 26 Jul 17:29:40.332 * DB saved on disk
+17391:C 26 Jul 17:29:40.332 * RDB: 0 MB of memory used by copy-on-write
+17286:M 26 Jul 17:29:40.389 * Background saving terminated with success
+#11 同步成功
+17286:M 26 Jul 17:29:40.390 * Synchronization with slave 192.168.132.128:7000 succeeded

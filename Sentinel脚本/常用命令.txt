@@ -1,0 +1,12 @@
+#启动redis 
+./src/redis-server redis-7000.conf
+#启动Sentinel
+./src/redis-sentinel sentinel-26379.conf
+#连接Redis
+./src/redis-cli -p 7000
+#连接Sentinel
+./src/redis-cli -p 26389
+#关闭Redis
+./src/redis-cli -p 7000 shutdown
+#关闭Sentinel
+./src/redis-cli -p 26379 shutdown

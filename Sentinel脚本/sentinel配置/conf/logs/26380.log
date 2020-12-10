@@ -1,0 +1,39 @@
+16729:X 26 Jul 17:20:29.255 # User requested shutdown...
+16729:X 26 Jul 17:20:29.255 * Removing the pid file.
+16729:X 26 Jul 17:20:29.255 # Sentinel is now ready to exit, bye bye...
+17301:X 26 Jul 17:21:11.208 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+17301:X 26 Jul 17:21:11.208 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=17301, just started
+17301:X 26 Jul 17:21:11.208 # Configuration loaded
+17302:X 26 Jul 17:21:11.211 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+17302:X 26 Jul 17:21:11.212 * Running mode=sentinel, port=26380.
+17302:X 26 Jul 17:21:11.212 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+17302:X 26 Jul 17:21:11.213 # Sentinel ID is fa2a876bd3368d01a632ba54ec8a6e9998de3556
+17302:X 26 Jul 17:21:11.213 # +monitor master mymaster 192.168.132.128 7000 quorum 2
+17302:X 26 Jul 17:21:11.214 * +slave slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:21:11.214 * +slave slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:21:11.978 * +sentinel sentinel 2f4b0fdd3e4b705f6111a9a5ace1cbc72b3d4a3f 192.168.132.128 26379 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:21:15.343 * +sentinel sentinel 4838fb100f4e912e16e70d0202f45442d8e4e7d4 192.168.132.128 26381 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:12.836 # +sdown master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:12.906 # +odown master mymaster 192.168.132.128 7000 #quorum 2/2
+17302:X 26 Jul 17:22:12.906 # +new-epoch 1
+17302:X 26 Jul 17:22:12.906 # +try-failover master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:12.907 # +vote-for-leader fa2a876bd3368d01a632ba54ec8a6e9998de3556 1
+17302:X 26 Jul 17:22:12.909 # 2f4b0fdd3e4b705f6111a9a5ace1cbc72b3d4a3f voted for fa2a876bd3368d01a632ba54ec8a6e9998de3556 1
+17302:X 26 Jul 17:22:12.910 # 4838fb100f4e912e16e70d0202f45442d8e4e7d4 voted for fa2a876bd3368d01a632ba54ec8a6e9998de3556 1
+17302:X 26 Jul 17:22:12.961 # +elected-leader master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:12.961 # +failover-state-select-slave master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:13.015 # +selected-slave slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:13.015 * +failover-state-send-slaveof-noone slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:13.109 * +failover-state-wait-promotion slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:13.356 # +promoted-slave slave 192.168.132.128:7001 192.168.132.128 7001 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:13.356 # +failover-state-reconf-slaves master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:13.410 * +slave-reconf-sent slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:14.000 # -odown master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:14.363 * +slave-reconf-inprog slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:14.363 * +slave-reconf-done slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:14.441 # +failover-end master mymaster 192.168.132.128 7000
+17302:X 26 Jul 17:22:14.441 # +switch-master mymaster 192.168.132.128 7000 192.168.132.128 7001
+17302:X 26 Jul 17:22:14.441 * +slave slave 192.168.132.128:7002 192.168.132.128 7002 @ mymaster 192.168.132.128 7001
+17302:X 26 Jul 17:22:14.441 * +slave slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
+17302:X 26 Jul 17:22:44.469 # +sdown slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
+17302:X 26 Jul 17:29:30.420 # -sdown slave 192.168.132.128:7000 192.168.132.128 7000 @ mymaster 192.168.132.128 7001
